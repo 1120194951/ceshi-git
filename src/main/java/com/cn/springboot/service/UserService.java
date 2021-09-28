@@ -14,4 +14,10 @@ public interface UserService {
     int getUsername(String username);
 
     int insertUsername(User user);
+
+    User updateruleForm(int id);
+
+    int updateUsername(User user);
+
+    int deleteUserid(int id);
 }

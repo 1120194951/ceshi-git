@@ -26,12 +26,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getUserList(QueryInfo queryInfo) {
         //获取最大列表数
-        int numbers = dao.geyUserCounts("%"+queryInfo.getQuery()+"%");
-        int pageStart = (queryInfo.getPageNum()-1) * queryInfo.getPageSize();
-        List<User> users = dao.getAllUser("%"+queryInfo.getQuery()+"%", pageStart, queryInfo.getPageSize());
+        int numbers = dao.geyUserCounts("%" + queryInfo.getQuery() + "%");
+        int pageStart = (queryInfo.getPageNum() - 1) * queryInfo.getPageSize();
+        List<User> users = dao.getAllUser("%" + queryInfo.getQuery() + "%", pageStart, queryInfo.getPageSize());
         HashMap<String, Object> map = new HashMap<>();
-        map.put("numbars",numbers);
-        map.put("data",users);
+        map.put("numbars", numbers);
+        map.put("data", users);
 
         String s = JSON.toJSONString(map);
         return s;
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUserList(User user) {
-        dao.updateUserList(user.getId(),user.isState());
+        dao.updateUserList(user.getId(), user.isState());
 
     }
 
@@ -53,6 +53,23 @@ public class UserServiceImpl implements UserService {
     public int insertUsername(User user) {
         return dao.insertUsername(user);
 
+    }
+
+    @Override
+    public User updateruleForm(int id) {
+        return dao.updateruleForm(id);
+    }
+
+    @Override
+    public int updateUsername(User user) {
+        int i = dao.updateUsername(user.getId(),user.getUsername(),user.getPassword(),user.getEmail());
+
+        return i;
+    }
+
+    @Override
+    public int deleteUserid(int id) {
+       return dao.deleteUsername(id);
     }
 
 

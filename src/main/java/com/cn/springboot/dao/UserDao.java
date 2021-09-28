@@ -5,7 +5,7 @@ import com.cn.springboot.bean.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.List;
 
@@ -23,4 +23,10 @@ public interface UserDao {
     int getUsername(@Param("username") String username);
 
     int insertUsername(User user);
+
+    public User updateruleForm(int id);
+
+    int updateUsername(int id, @Param("username")String username,@Param("password") String password,@Param("email") String email);
+
+    int deleteUsername(int id);
 }

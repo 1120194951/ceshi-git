@@ -8,13 +8,10 @@ import com.cn.springboot.service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 
@@ -52,6 +49,35 @@ public class UserController {
                 map.put("succes", "");
                 map.put("flag", "添加成功");
             }
+        }
+        String s = JSON.toJSONString(map);
+        return s;
+    }
+    @GetMapping("/updateruleForm")
+    public User updateruleForm(int id){
+        User user = service.updateruleForm(id);
+        return user;
+    }
+
+    @PostMapping("/updateUsername")
+    public String updateUsername(@RequestBody User user){
+        Map<String,Object> map= new Hashtable<String,Object>();
+        int i = service.updateUsername(user);
+        if (i >= 1) {
+            map.put("succes", "");
+            map.put("flag", "修改成功");
+        }
+        String s = JSON.toJSONString(map);
+        return s;
+    }
+
+    @GetMapping("/deleteUserid")
+    public String deleteUserid(int id){
+        Map<String,Object> map= new Hashtable<String,Object>();
+        int i = service.deleteUserid(id);
+        if (i >= 1) {
+            map.put("succes", "");
+            map.put("flag", "删除成功");
         }
         String s = JSON.toJSONString(map);
         return s;

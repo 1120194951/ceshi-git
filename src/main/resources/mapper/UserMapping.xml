@@ -37,4 +37,15 @@
         (username,password,email,role,state)
         value (#{username},#{password},#{email},#{role},#{state})
     </insert>
+
+    <select id="updateruleForm" resultType="com.cn.springboot.bean.User">
+        select * from easyuser where id=${id}
+    </select>
+    <delete id="deleteUsername">
+        delete from easyuser where id=${id}
+    </delete>
+
+    <update id="updateUsername">
+        update easyuser set username=${username},password=${password},email=${email} where id=${id}
+    </update>
 </mapper>
